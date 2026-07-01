@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>タスク管理・共有ボード</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>タスク管理・共有ボード</h1>
+
+    <details class="usage-guide">
+        <summary>💡 このアプリの使い方（クリックで開く）</summary>
+        <div class="guide-content">
+            <p><strong>📝 個人のタスクをメモする</strong><br>
+            「あなたの名前」だけを入力し、「相手の名前」は空欄にして追加してください。</p>
+            
+            <p><strong>🤝 誰かにタスクを依頼する</strong><br>
+            「あなたの名前」と「相手の名前」の両方を入力して追加してください。</p>
+            
+            <p><strong>✅ タスクを完了させる</strong><br>
+            終わったタスクは「完了にする」ボタンを押すとリストから削除されます。</p>
+
+            <p><strong>⚠️ タスクを拒否する（差し戻す）</strong><br>
+            依頼されたタスクができない場合は「拒否する」を押すと、依頼者に差し戻されます。</p>
+        </div>
+    </details>
+
+    <form action="/add" method="POST" class="task-form">
+        <div class="form-group" style="display: flex; gap: 10px; align-items: center;">
+            <input type="text" name="requestor" placeholder="あなたの名前" required>
+            <span>➔</span>
+            <input type="text" name="assignee" placeholder="相手の名前（空欄なら自分のタスク）">
+        </div>
+        
+        <div class="form-group">
+            <input type="text" name="taskName" placeholder="タスクを入力" required>
+        </div>
+        
+        <div class="form-group" style="display: flex; gap: 10px;">
+            <input type="datetime-local" name="taskDatetime">
+            <input type="text" name="taskLocation" placeholder="場所">
+        </div>
+        
+        <button type="submit">追加する</button>
+    </form>
+
+    <ul class="task-list">
+        <% tasks.forEach(function(task) { %>
+            <li class="task-card">
+                
+                <% if (task.requestor === task.assignee) { %>
+                    <span class="badge badge-personal">👤 <%= task.requestor %> さんの個人タスク</span>
+                <% } else { %>
+                    <span class="badge badge-request">👤 <%= task.requestor %> ➔ 👤 <%= task.assignee %> への依頼</span>
+                <% } %>
+
+                <div class="task-title"><%= task.text %></div>
+
+                <div class="task-details">
+                    <% if (task.datetime) { %>
+                        <% 
+                            const dt = task.datetime.split('T');
+                            const datePart = dt[0].replace(/-/g, '/');
+                            const timePart = dt[1];
+                        %>
+                        <span class="task-deadline">🚨 期限: <%= datePart %> <%= timePart %></span><br>
+                    <% } %>
+
+                    <% if (task.location) { %>
+                        📍 場所: <%= task.location %>
+                    <% } %>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <form action="/delete/<%= task.id %>" method="POST">
+                        <button type="submit" class="btn-complete">完了にする</button>
+                    </form>
+
+                    <% if (task.requestor !== task.assignee) { %>
+                        <form action="/reject/<%= task.id %>" method="POST">
+                            <button type="submit" class="btn-reject">拒否する</button>
+                        </form>
+                    <% } %>
+                </div>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,162 @@
+/* 全体のフォントと背景色 */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f1f5f9;
+    color: #334155;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #0f172a;
+    margin-bottom: 30px;
+}
+
+/* 使い方ガイドのデザイン */
+.usage-guide {
+    background-color: #e0f2fe;
+    border: 1px solid #bae6fd;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: 25px;
+    color: #0369a1;
+}
+
+.usage-guide summary {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.05em;
+}
+
+.usage-guide summary:hover {
+    opacity: 0.8;
+}
+
+.guide-content {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #7dd3fc;
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: #0c4a6e;
+}
+
+.guide-content p {
+    margin-bottom: 12px;
+}
+
+.guide-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* 入力フォームのデザイン */
+.task-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input[type="text"], input[type="datetime-local"] {
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+/* ボタンの基本デザイン */
+button {
+    background-color: #3b82f6; /* デフォルトの青色 */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #2563eb;
+}
+
+/* 完了ボタン（緑色） */
+.btn-complete {
+    background-color: #10b981;
+}
+
+.btn-complete:hover {
+    background-color: #059669;
+}
+
+/* 拒否ボタン（赤色） */
+.btn-reject {
+    background-color: #ef4444;
+}
+
+.btn-reject:hover {
+    background-color: #dc2626;
+}
+
+/* タスク一覧のデザイン（カード型） */
+.task-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 15px;
+    border-left: 5px solid #cbd5e1;
+}
+
+/* バッジのデザイン */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.badge-personal {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.badge-request {
+    background-color: #e2e8f0;
+    color: #334155;
+}
+
+/* タスク内のテキスト要素 */
+.task-title {
+    font-size: 1.25em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.task-details {
+    font-size: 0.9em;
+    color: #64748b;
+    margin-bottom: 15px;
+}
+
+.task-deadline {
+    color: #ef4444;
+    font-weight: bold;
+}
